@@ -10,6 +10,9 @@ import CartModal from './pages/CartModal';
 import { loadStripe } from '@stripe/stripe-js';
 import { Elements } from '@stripe/react-stripe-js';
 import './index.css';
+import Login from './pages/Login';
+import Register from './pages/Register';
+import AdminDashboard from './pages/AdminDashboard';
 
 const stripePromise = loadStripe('pk_test_51Pi7FSRtNsrVaEeelBYvXzbFEuEHLnLGQIlCyRof72nED6W2aX0XusFSsdPcpLXn43XcF35Yx8lOvPJ44gbKWNVk00EWkWryIT');
 
@@ -42,6 +45,10 @@ const MainApp: React.FC<MainAppProps> = ({ isCartOpen, setIsCartOpen }) => {
           <Route path="/" element={<Home />} />
           <Route path="/products" element={<Products />} />
           <Route path="/checkout" element={<Elements stripe={stripePromise}><Checkout /></Elements>} />
+          <Route path='/Login' element={<Login />} />
+          <Route path='/Register' element={<Register />} />
+          <Route path='/Admin-dashboard' element={<AdminDashboard />} />
+
         </Routes>
       </main>
       <Footer />

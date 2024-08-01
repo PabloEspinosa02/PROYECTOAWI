@@ -1,4 +1,5 @@
 import axios from 'axios';
+import IProducts from '../interfaces/IProducts';
 
 const API_URL = 'http://localhost:5171/api';
 
@@ -7,14 +8,18 @@ export const registerUser = (userData: { username: string, password: string, ema
 };
 
 export const loginUser = (userData: { username: string, password: string }) => {
-  return axios.post(`${API_URL}/auth/login`, userData);
+  const response = axios.post(`${API_URL}/Auth/login`, userData);
+  return response;
 };
 
 export const getProducts = () => {
-  return axios.get(`${API_URL}/products`);
+  const response = axios.get(`${API_URL}/products`);
+  return response;
 };
 
-export const addProduct = (productData: { name: string, price: number, description: string, imageUrl: string }) => {
+export const addProduct = (productData: Omit<IProducts, 'id'>) => {
+  console.log(productData);
+  
   return axios.post(`${API_URL}/products`, productData);
 };
 
