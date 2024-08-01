@@ -59,7 +59,7 @@ const Products: React.FC = () => {
         {currentPageData.map(product => (
           <div key={product.id} className="relative bg-white shadow-lg rounded-lg overflow-hidden">
             <img src={product.imageUrl || 'https://via.placeholder.com/150'} alt={product.name} className="w-full h-48 object-contain"/>
-            <button onClick={() => openModal(product)} className="absolute top-20 left-1/2 transform -translate-x-1/2 bg-blue-500 text-white px-4 py-2 rounded-full hover:bg-blue-600">Quick View</button>
+            <button onClick={() => openModal(product)} className="absolute top-20 left-1/2 transform -translate-x-1/2 bg-blue-500 text-white px-4 py-2 rounded-full hover:bg-blue-600">Vista Previa</button>
             <div className="p-4">
               <h3 className="text-xl font-semibold">{product.name}</h3>
               <p className="text-gray-600">{product.description}</p>

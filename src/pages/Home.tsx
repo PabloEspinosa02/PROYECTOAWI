@@ -38,14 +38,7 @@ const Home: React.FC = () => {
                 BIS <br />
                 SHOP
               </h1>
-              <div className="flex space-x-4 ml-80 slide-in-left" style={{ animationDelay: '1.7s' }}>
-                <button className="transition ease-in-out delay-150 bg-transparent border border-white px-6 py-2 rounded-full hover:bg-white hover:text-black duration-300">
-                  Book Now
-                </button>
-                <button className="transition ease-in-out delay-150 bg-transparent border border-white px-6 py-2 rounded-full hover:bg-white hover:text-black duration-300">
-                  Watch Video
-                </button>
-              </div>
+  
             </>
           )}
         </div>

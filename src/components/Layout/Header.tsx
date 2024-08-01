@@ -31,7 +31,6 @@ const Header: React.FC<HeaderProps> = ({ setIsCartOpen, isProductsPage }) => {
             <span className="absolute top-0 right-0 bg-red-500 text-white rounded-full px-2 py-1 text-xs">{cartItemCount}</span>
           )}
         </div>
-        <button className="transition ease-in-out duration-300 hover:text-gray-400 hover:transform hover:-translate-y-1 hover:scale-105">Logout</button>
       </div>
     </header>
   );

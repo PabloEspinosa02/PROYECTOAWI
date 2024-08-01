@@ -3,9 +3,10 @@ import { PayPalButtons, PayPalScriptProvider } from "@paypal/react-paypal-js";
 import { initMercadoPago, Wallet } from '@mercadopago/sdk-react';
 import { useCart } from './CartContext';
 import axios from 'axios';
+import { IMercadoPagoItem } from '../interfaces/IMercadoPagoItem';
 
 // Inicializa MercadoPago con tu clave de prueba
-initMercadoPago('TEST-7450692063600852-061622-4c565aa0cfaadbdf0e0c9f85eb05b4ce-389042458', {
+initMercadoPago('TEST-f45a5a82-69b7-4ac0-810d-6e3afbc816e9', {
   locale: "es-MX"
 });
 
@@ -16,6 +17,9 @@ const Checkout: React.FC = () => {
   const [message, setMessage] = useState<string>('');
 
   useEffect(() => {
+
+    handlePayment()
+
     const generatePreferenceId = async () => {
       try {
         const response = await axios.post('/api/payments/create-payment', {
@@ -64,6 +68,47 @@ const Checkout: React.FC = () => {
       console.error('Error al procesar con PayPal:', error);
     }
   };
+
+
+  const handlePayment = async () => {
+    const preferenceId = await createPreference();
+    if (preferenceId) {
+      setPreferenceId(preferenceId)
+      console.log('ID obtenido:', preferenceId);
+      
+    }
+  }
+
+  const createPreference = async () => {
+    try {
+
+      const postData: IMercadoPagoItem[] = cart.map((item) => ({
+        id: item.id.toString(),
+        title: item.name,
+        description: item.name,
+        pictureUrl: item.imageUrl,
+        quantity: item.quantity,
+        unitPrice: Math.round(Number(item.price)), 
+      }));
+
+      console.log(postData);
+      
+      
+      const response = await axios.post('http://localhost:5171/api/Payments/create-preference', postData, {
+        headers: {
+          'Access-Control-Allow-Origin': '*',
+          'Access-Control-Allow-Methods': 'GET, POST, PUT, DELETE',
+          'Access-Control-Allow-Headers': 'Content-Type',
+        },
+      });
+      console.log(response.data);
+  
+      const { id } = response.data;
+      return id;
+    } catch (error) {
+      console.error(error);
+    }
+  }
 
   return (
     <div className="min-h-screen flex items-center justify-center bg-gray-100 p-6">
@@ -115,7 +160,8 @@ const Checkout: React.FC = () => {
 
           <div className="flex flex-col space-y-4 mb-6">
             <button 
-              onClick={() => handleMercadoPago('fake-token', 'visa')} 
+              // onClick={() => handleMercadoPago('fake-token', 'visa')} 
+              onClick={() => handlePayment()}
               className="bg-green-500 w-full py-3 rounded text-lg font-semibold">
               Pagar con Mercado Pago
             </button>
