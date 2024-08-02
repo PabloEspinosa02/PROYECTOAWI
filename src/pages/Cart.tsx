@@ -28,6 +28,7 @@ const Cart: React.FC = () => {
           {cartItems.map((item: any) => (
             <li key={item.id}>
               {item.name} - {item.quantity}
+              {item.size && ` - Talla: ${item.size}`}
             </li>
           ))}
         </ul>

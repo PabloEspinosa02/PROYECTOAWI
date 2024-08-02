@@ -85,7 +85,7 @@ const Checkout: React.FC = () => {
       const postData: IMercadoPagoItem[] = cart.map((item) => ({
         id: item.id.toString(),
         title: item.name,
-        description: item.name,
+        description: item.size > 0 ? `Talla: ${item.size}` : 'Sin talla',
         pictureUrl: item.imageUrl,
         quantity: item.quantity,
         unitPrice: Math.round(Number(item.price)), 
@@ -94,7 +94,7 @@ const Checkout: React.FC = () => {
       console.log(postData);
       
       
-      const response = await axios.post('http://localhost:5171/api/Payments/create-preference', postData, {
+      const response = await axios.post('https://localhost:7105/api/Payments/create-preference', postData, {
         headers: {
           'Access-Control-Allow-Origin': '*',
           'Access-Control-Allow-Methods': 'GET, POST, PUT, DELETE',

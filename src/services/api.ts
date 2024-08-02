@@ -1,7 +1,7 @@
 import axios from 'axios';
 import IProducts from '../interfaces/IProducts';
 
-const API_URL = 'http://localhost:5171/api';
+const API_URL = 'https://localhost:7105/api';
 
 export const registerUser = (userData: { username: string, password: string, email: string }) => {
   return axios.post(`${API_URL}/auth/register`, userData);
@@ -23,7 +23,7 @@ export const addProduct = (productData: Omit<IProducts, 'id'>) => {
   return axios.post(`${API_URL}/products`, productData);
 };
 
-export const updateProduct = (productId: number, productData: { name: string, price: number, description: string, imageUrl: string }) => {
+export const updateProduct = (productId: number, productData: { name: string, price: number, description: string, imageUrl: string }) => {  
   return axios.put(`${API_URL}/products/${productId}`, productData);
 };
 

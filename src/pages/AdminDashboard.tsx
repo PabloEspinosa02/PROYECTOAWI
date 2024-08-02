@@ -30,7 +30,8 @@ const AdminDashboard: React.FC = () => {
         name: product.name,
         price: product.price,
         description: product.description,
-        imageUrl: product.imageUrl
+        imageUrl: product.imageUrl,
+        sizes : product.sizes
     }
 
     await updateProduct(product.id, productActualizado);

@@ -4,4 +4,5 @@ export default interface IProducts {
     price: number;
     description: string;
     imageUrl: string;
+    sizes: string[];
 }   
